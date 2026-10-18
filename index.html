@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sözcük Ritmi — Harfleri birleştir, ritmi yakala</title>
+<meta name="description" content="Sözcük Ritmi: Türkiye'yi bulmacayla gezdiren, her kelimede hecelerin melodisini çalan Türkçe kelime oyunu. Yakında Google Play'de.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sözcük Ritmi — Türkçe kelime oyunu">
+<meta property="og:description" content="Harfleri birleştir, kelimelerin ritmini yakala; Türkiye'yi bulmacayla gez!">
+<meta property="og:image" content="img/og.png">
+<meta name="theme-color" content="#14334F">
+<link rel="icon" href="img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --deep:#0f2a45; --denim:#2F6FB2; --denim-d:#1d4d82; --aqua:#34C3B0; --aqua-l:#8FE3EA;
+    --cream:#FFF6E0; --yellow:#FFC93C; --yellow-d:#E9A91A; --lav:#D8C7FF; --ink:#14334F;
+    --glass:rgba(255,255,255,.10); --line:rgba(143,227,234,.35);
+    --bg:#0f2a45; --text:#f1f7ff; --muted:#b7cbe6;
+  }
+  :root[data-theme="light"]{ --bg:#f3f9ff; --text:#14334F; --muted:#4b6a8c; --glass:rgba(47,111,178,.08); --line:rgba(47,111,178,.25); }
+  @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]){ --bg:#f3f9ff; --text:#14334F; --muted:#4b6a8c; --glass:rgba(47,111,178,.08); --line:rgba(47,111,178,.25);} }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:'Fredoka',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:17px;line-height:1.55;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{line-height:1.12;margin:0}
+  h2{font-size:clamp(1.9rem,4.2vw,2.8rem);font-weight:700;letter-spacing:-.01em}
+  .eyebrow{display:inline-block;font-weight:600;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--aqua);margin-bottom:10px}
+  .lead{color:var(--muted);max-width:60ch}
+
+  /* nav */
+  nav{position:fixed;inset:0 0 auto 0;z-index:20;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:18px;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;text-decoration:none}
+  .brand img{width:34px;height:34px;border-radius:9px}
+  nav .links{margin-left:auto;display:flex;gap:22px;align-items:center}
+  nav .links a{text-decoration:none;font-weight:500;opacity:.85}
+  nav .links a:hover{opacity:1;color:var(--aqua)}
+  .pill{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-family:inherit;font-size:1rem}
+  .pill.gold{background:linear-gradient(#FFD65C,var(--yellow));color:var(--ink);box-shadow:0 5px 0 var(--yellow-d),0 14px 28px rgba(255,201,60,.28);transition:transform .15s,box-shadow .15s}
+  .pill.gold:hover{transform:translateY(-2px)}
+  .pill.ghost{background:var(--glass);border:1.5px solid var(--line);color:var(--text)}
+  #theme{width:42px;height:42px;padding:0;justify-content:center}
+  @media(max-width:760px){ nav .links a.hide-s{display:none} }
+
+  /* hero */
+  .hero{position:relative;padding:130px 0 90px;overflow:hidden;isolation:isolate}
+  .hero::before{content:"";position:absolute;inset:0;background:url(img/hero_bg.jpg) center/cover;z-index:-3;filter:saturate(1.1)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(180deg,rgba(15,42,69,.62) 0%,rgba(15,42,69,.78) 55%,var(--bg) 100%)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:700;letter-spacing:-.02em;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+  .hero h1 em{font-style:normal;color:var(--yellow)}
+  .hero p.lead{color:#e4f0ff;font-size:1.2rem;margin:22px 0 30px}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .soon{display:inline-flex;gap:10px;align-items:center;padding:14px 24px;border-radius:18px;background:#0b1f33;border:1.5px solid rgba(255,255,255,.3);color:#fff;text-decoration:none}
+  .soon small{display:block;font-size:.72rem;opacity:.75;letter-spacing:.08em;text-transform:uppercase}
+  .soon strong{font-size:1.1rem}
+  .soon svg{width:28px;height:28px}
+  .tiles{display:flex;gap:8px;margin-top:34px}
+  .tile{width:46px;height:46px;border-radius:13px;background:linear-gradient(#FFFBEF,#F3E3BC);color:var(--ink);font-weight:700;font-size:1.4rem;display:grid;place-items:center;box-shadow:0 4px 0 #cdb98a,0 10px 18px rgba(0,0,0,.25);animation:bob 3.2s ease-in-out infinite}
+  .tile:nth-child(2){animation-delay:.2s}.tile:nth-child(3){animation-delay:.4s}.tile:nth-child(4){animation-delay:.6s}.tile:nth-child(5){animation-delay:.8s}.tile:nth-child(6){animation-delay:1s}
+  .tile.hot{background:linear-gradient(#8FE3EA,var(--aqua));box-shadow:0 4px 0 #1f8f80,0 10px 18px rgba(0,0,0,.25)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .phone{position:relative;justify-self:center;width:min(300px,78vw);aspect-ratio:540/1260;border-radius:38px;padding:10px;background:linear-gradient(150deg,#fff6e0,#d9c9a2);box-shadow:0 40px 80px rgba(0,0,0,.45),0 0 0 2px rgba(255,255,255,.25) inset;transform:rotate(3deg)}
+  .phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:30px}
+  .float{position:absolute;filter:drop-shadow(0 14px 18px rgba(0,0,0,.35));animation:bob 4s ease-in-out infinite}
+  .float.a{width:92px;left:-52px;bottom:70px}
+  .float.b{width:84px;right:-40px;top:60px;animation-delay:1.2s}
+  @media(max-width:860px){.hero-grid{grid-template-columns:1fr;text-align:center}.cta,.tiles{justify-content:center}.hero p.lead{margin-inline:auto}.float.a{left:-14px}.float.b{right:-10px}}
+
+  /* generic sections */
+  section{padding:84px 0}
+  .head{text-align:center;margin-bottom:46px}
+  .head .lead{margin:14px auto 0}
+  .grid{display:grid;gap:20px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:900px){.g3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.g3,.g2{grid-template-columns:1fr}}
+  .card{background:var(--glass);border:1.5px solid var(--line);border-radius:26px;padding:26px;backdrop-filter:blur(6px);transition:transform .25s,border-color .25s}
+  .card:hover{transform:translateY(-5px);border-color:var(--aqua)}
+  .card h3{font-size:1.25rem;margin:14px 0 6px}
+  .card p{margin:0;color:var(--muted);font-size:.98rem}
+  .ico{width:60px;height:60px;border-radius:18px;display:grid;place-items:center;font-size:1.7rem;background:linear-gradient(135deg,var(--aqua),var(--denim));box-shadow:0 8px 18px rgba(52,195,176,.3)}
+
+  /* steps */
+  .step{text-align:center}
+  .step img{height:150px;margin:0 auto 10px;object-fit:contain}
+  .step .n{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--yellow);color:var(--ink);font-weight:700}
+
+  /* journey */
+  .rail{display:flex;gap:16px;overflow-x:auto;padding:8px 20px 26px;scroll-snap-type:x mandatory;scrollbar-width:thin}
+  .city{flex:0 0 auto;width:190px;aspect-ratio:2/3;border-radius:24px;overflow:hidden;position:relative;scroll-snap-align:start;border:2px solid var(--line);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+  .city img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .city:hover img{transform:scale(1.08)}
+  .city span{position:absolute;left:10px;right:10px;bottom:10px;padding:8px 12px;border-radius:999px;background:var(--cream);color:var(--ink);font-weight:700;text-align:center;font-size:.95rem}
+  .city i{position:absolute;top:10px;left:10px;font-style:normal;font-weight:700;font-size:.8rem;background:rgba(15,42,69,.7);color:#fff;border-radius:999px;padding:3px 10px}
+
+  /* ritim */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center}
+  @media(max-width:860px){.split{grid-template-columns:1fr}}
+  .waves{display:flex;align-items:center;gap:5px;height:90px;margin:26px 0}
+  .waves b{flex:1;border-radius:99px;background:linear-gradient(var(--aqua-l),var(--aqua));animation:eq 1.2s ease-in-out infinite;min-width:4px}
+  @keyframes eq{0%,100%{height:18%}50%{height:100%}}
+  .waves b:nth-child(3n){animation-duration:.9s;background:linear-gradient(#FFE08A,var(--yellow))}
+  .waves b:nth-child(4n){animation-duration:1.5s}
+  .waves b:nth-child(5n){animation-delay:.25s}
+  .icons{display:flex;flex-wrap:wrap;gap:16px}
+  .ic{width:104px;text-align:center;font-size:.85rem;color:var(--muted)}
+  .ic img{width:82px;margin:0 auto 4px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.3))}
+
+  /* ranks */
+  .ranks{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+  .rank{text-align:center;font-size:.85rem;color:var(--muted);font-weight:500}
+  .rank img{width:100%;max-width:92px;margin:0 auto 6px;transition:transform .25s}
+  .rank:hover img{transform:scale(1.12) rotate(-4deg)}
+  @media(max-width:900px){.ranks{grid-template-columns:repeat(4,1fr)}}
+  .flames{display:flex;justify-content:center;gap:26px;margin-top:40px;flex-wrap:wrap}
+  .flame{text-align:center;font-size:.85rem;color:var(--muted)}
+  .flame svg{width:50px;height:62px;filter:drop-shadow(0 0 12px var(--g));animation:flick 1.6s ease-in-out infinite}
+  .flame:nth-child(2) svg{animation-delay:.2s}.flame:nth-child(3) svg{animation-delay:.4s}.flame:nth-child(4) svg{animation-delay:.6s}.flame:nth-child(5) svg{animation-delay:.8s}
+  @keyframes flick{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.07,1.1) rotate(2deg)}}
+
+  /* shop */
+  .packs{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;margin-top:12px}
+  .pack{width:190px;text-align:center}
+  .pack img{height:120px;margin:0 auto 6px;object-fit:contain;filter:drop-shadow(0 12px 14px rgba(0,0,0,.3))}
+  .badges{display:flex;justify-content:center;gap:24px;margin-top:30px}
+  .badges img{width:84px;filter:drop-shadow(0 8px 10px rgba(0,0,0,.3))}
+
+  /* faq */
+  details{background:var(--glass);border:1.5px solid var(--line);border-radius:20px;padding:18px 22px;margin-bottom:12px}
+  summary{cursor:pointer;font-weight:600;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:12px}
+  summary::after{content:"+";color:var(--aqua);font-size:1.5rem;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{margin:12px 0 0;color:var(--muted)}
+
+  /* cta band + footer */
+  .band{background:linear-gradient(135deg,var(--denim),var(--aqua));border-radius:34px;padding:56px 26px;text-align:center;color:#fff;position:relative;overflow:hidden}
+  .band h2{color:#fff}
+  .band p{max-width:52ch;margin:14px auto 26px;color:#eaf8ff}
+  footer{padding:46px 0 60px;border-top:1px solid var(--line);color:var(--muted);font-size:.95rem}
+  footer .row{display:flex;flex-wrap:wrap;gap:18px 34px;align-items:center;justify-content:space-between}
+  footer a{text-decoration:none}footer a:hover{color:var(--aqua)}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s,transform .8s}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/icon.png" alt="" width="34" height="34">Sözcük Ritmi</a>
+    <div class="links">
+      <a class="hide-s" href="#nasil">Nasıl oynanır</a>
+      <a class="hide-s" href="#yolculuk">Yolculuk</a>
+      <a class="hide-s" href="#ritim">Ritim</a>
+      <a class="hide-s" href="#sss">SSS</a>
+      <button class="pill ghost" id="theme" aria-label="Tema değiştir">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" style="color:#8FE3EA">Türkçe kelime oyunu</span>
+      <h1>Harflerin <em>ritmini</em> yakala</h1>
+      <p class="lead">Çemberdeki harflerde parmağını kaydır, kelimeleri bul, bulmacayı aç. Her kelimede hecelerin melodisi çalar; İstanbul'dan Ege'ye 15 bölgelik bir yolculuğa çık.</p>
+      <div class="cta">
+        <span class="soon" role="note">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 3.5v17a1 1 0 0 0 1.5.9l15-8.5a1 1 0 0 0 0-1.8l-15-8.5A1 1 0 0 0 4 3.5Z" fill="#34C3B0"/></svg>
+          <span><small>Yakında</small><strong>Google Play'de</strong></span>
+        </span>
+        <a class="pill gold" href="#nasil">Nasıl oynanır?</a>
+      </div>
+      <div class="tiles" aria-hidden="true">
+        <div class="tile">S</div><div class="tile">Ö</div><div class="tile hot">Z</div><div class="tile">C</div><div class="tile">Ü</div><div class="tile hot">K</div>
+      </div>
+    </div>
+    <div class="phone">
+      <img src="img/shot_home.jpg" alt="Sözcük Ritmi ana ekranı: İstanbul manzarası, OYNA düğmesi, günün bulmacası" width="540" height="1260">
+      <img class="float a" src="img/ui/coins_medium.png" alt="" style="height:auto;border-radius:0;object-fit:contain">
+      <img class="float b" src="img/ui/gift_box_icon.png" alt="" style="height:auto;border-radius:0;object-fit:contain">
+    </div>
+  </div>
+</header>
+
+<section id="nasil">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Üç adımda</span><h2>Öğrenmesi kolay, bırakması zor</h2></div>
+    <div class="grid g3">
+      <div class="card step reveal"><img src="img/ui/step_1.png" alt=""><span class="n">1</span><h3>Harfleri kaydır</h3><p>Çemberdeki harflerin üzerinden parmağını sürükleyerek kelimeyi kur.</p></div>
+      <div class="card step reveal"><img src="img/ui/step_2.png" alt=""><span class="n">2</span><h3>Bulmacayı aç</h3><p>Doğru kelime çapraz bulmacadaki yerine oturur. Hepsini bulunca bölüm biter.</p></div>
+      <div class="card step reveal"><img src="img/ui/step_3.png" alt=""><span class="n">3</span><h3>Ödülünü al</h3><p>Yıldız ve coin kazan, takılınca ipucu kullan, yeni bölgeleri aç.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Neler var?</span><h2>Bir kelime oyunundan fazlası</h2></div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="ico">🗺️</div><h3>300 bölüm, 15 bölge</h3><p>İstanbul'dan Kapadokya'ya, Efes'ten Nemrut'a; her bölgenin kendi manzarası var.</p></div>
+      <div class="card reveal"><div class="ico">🎵</div><h3>Hece Ritmi</h3><p>Kelimedeki hece sayısı kadar nota çalar. Art arda hızlı bul, ritim serisiyle ekstra coin kazan.</p></div>
+      <div class="card reveal"><div class="ico">📜</div><h3>Atasözü kapanışı</h3><p>Her birkaç bölümde bir atasözünü tamamla; öğrendiklerin atasözü defterine yazılır.</p></div>
+      <div class="card reveal"><div class="ico">📅</div><h3>Günün Bulmacası</h3><p>Herkes aynı gün aynı bulmacayı çözer. Sonucunu renkli karelerle arkadaşlarınla paylaş.</p></div>
+      <div class="card reveal"><div class="ico">🔥</div><h3>Seri alevi</h3><p>Her gün girdikçe alevin büyür ve rengi değişir: turuncu, altın, kızıl, mavi ve neon.</p></div>
+      <div class="card reveal"><div class="ico">🏅</div><h3>Dereceler ve başarımlar</h3><p>Tını'dan Söz Virtüözü'ne uzanan 8 derece, bronz, gümüş ve altın başarım madalyaları.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="yolculuk" style="padding-bottom:40px">
+  <div class="wrap"><div class="head reveal"><span class="eyebrow">Yolculuk</span><h2>Türkiye'yi bulmacayla gez</h2><p class="lead">Her bölge yeni bir manzara ve yeni bir hikâye. Gün batımında, gece de farklı bir ışıkla karşılaşırsın.</p></div></div>
+  <div class="rail" id="rail"></div>
+</section>
+
+<section id="ritim">
+  <div class="wrap split">
+    <div class="reveal">
+      <span class="eyebrow">Ritim</span>
+      <h2>Oyunun kendi müziği var</h2>
+      <p class="lead" style="margin-top:14px">Akıllı müzik, oyunda sessiz başlar; kelime buldukça gelir, takılınca susar. Üç ses paketi ve üç oyun içi parça arasından seçebilirsin.</p>
+      <div class="waves" id="waves" aria-hidden="true"></div>
+    </div>
+    <div class="reveal">
+      <div class="card">
+        <strong>Ses paketleri</strong>
+        <div class="icons" style="margin:12px 0 24px">
+          <div class="ic"><img src="img/ui/sound_classic.png" alt="">Klasik</div>
+          <div class="ic"><img src="img/ui/sound_marimba.png" alt="">Marimba</div>
+          <div class="ic"><img src="img/ui/sound_crystal.png" alt="">Kristal</div>
+        </div>
+        <strong>Oyun içi müzik</strong>
+        <div class="icons" style="margin-top:12px">
+          <div class="ic"><img src="img/ui/track_g1.png" alt="">Ukulele</div>
+          <div class="ic"><img src="img/ui/track_g2.png" alt="">Rhodes</div>
+          <div class="ic"><img src="img/ui/track_g3.png" alt="">Piyano</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">İlerleme</span><h2>Derece atla, alevi büyüt</h2><p class="lead">Puanların arttıkça derecen yükselir. Her gün giriş yaparak alevini besle.</p></div>
+    <div class="ranks reveal" id="ranks"></div>
+    <div class="flames reveal" id="flames"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Adil ve rahat</span><h2>Reklamlar isteğe bağlı</h2><p class="lead">Ödüllü reklamı izlemek tamamen sana kalmış. Coin paketleri ve reklamsız oynama seçeneği Google Play üzerinden sunulur. Oyun internetsiz de oynanır.</p></div>
+    <div class="packs reveal">
+      <div class="pack"><img src="img/ui/coins_small.png" alt=""><strong>Küçük paket</strong></div>
+      <div class="pack"><img src="img/ui/coins_medium.png" alt=""><strong>Orta paket</strong></div>
+      <div class="pack"><img src="img/ui/coins_large.png" alt=""><strong>Büyük paket</strong></div>
+    </div>
+    <div class="badges reveal"><img src="img/ui/badge_bronze.png" alt=""><img src="img/ui/badge_silver.png" alt=""><img src="img/ui/badge_gold.png" alt=""></div>
+  </div>
+</section>
+
+<section id="sss">
+  <div class="wrap" style="max-width:780px">
+    <div class="head reveal"><span class="eyebrow">Sorular</span><h2>Sık sorulanlar</h2></div>
+    <div class="reveal">
+      <details><summary>Oyun ücretsiz mi?</summary><p>Evet, ücretsiz indirilir ve oynanır. İsteğe bağlı ödüllü reklamlar ile coin paketleri ve reklamsız oynama için uygulama içi satın alma bulunur.</p></details>
+      <details><summary>İnternet gerekiyor mu?</summary><p>Hayır. Bölümler internetsiz de oynanır. Reklamlar ve satın almalar için bağlantı gerekir.</p></details>
+      <details><summary>İlerlemem kaybolur mu?</summary><p>İlerleme cihazında saklanır. Cihazında Google yedeklemesi açıksa yeniden kurulumda veya yeni telefonda geri gelir.</p></details>
+      <details><summary>Verilerim toplanıyor mu?</summary><p>Hesap sistemi yoktur; ad, e-posta, konum gibi bilgiler istenmez. Ayrıntılar için <a href="gizlilik.html" style="color:var(--aqua)">gizlilik politikasını</a> okuyabilirsin.</p></details>
+      <details><summary>Ne zaman çıkıyor?</summary><p>Sözcük Ritmi yakında Google Play'de olacak. Duyuru için bu sayfayı takip edebilirsin.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="wrap" style="padding-bottom:70px">
+  <div class="band reveal">
+    <h2>Harflerin ritmine hazır mısın?</h2>
+    <p>Sözcük Ritmi yakında Google Play'de. Sorun ve önerilerin için bize yazabilirsin.</p>
+    <a class="pill gold" href="mailto:studioixacode@gmail.com">Bize yaz</a>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap row">
+    <div><strong>Ixa Games</strong> · Sözcük Ritmi<br>© 2026 Tüm hakları saklıdır.</div>
+    <div style="display:flex;gap:22px;flex-wrap:wrap"><a href="gizlilik.html">Gizlilik politikası</a><a href="mailto:studioixacode@gmail.com">İletişim</a></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var cities=[["istanbul","İstanbul"],["kapadokya","Kapadokya"],["efes","Efes"],["pamukkale","Pamukkale"],["karadeniz","Karadeniz"],["konya","Konya"],["antalya","Antalya"],["mardin","Mardin"],["nemrut","Nemrut"],["van","Van"],["bursa","Bursa"],["trabzon","Trabzon"],["ankara","Ankara"],["canakkale","Çanakkale"],["ege","Ege"]];
+  var rail=document.getElementById('rail');
+  rail.innerHTML=cities.map(function(c,i){return '<div class="city"><img loading="lazy" src="img/cities/'+c[0]+'.jpg" alt="'+c[1]+' manzarası"><i>'+(i+1)+'</i><span>'+c[1]+'</span></div>'}).join('');
+  var ranks=[["tini","Tını"],["nota","Nota"],["ezgi","Ezgi"],["nagme","Nağme"],["ahenk","Ahenk"],["makam","Makam"],["beste","Beste"],["sozvirtuozu","Söz Virtüözü"]];
+  document.getElementById('ranks').innerHTML=ranks.map(function(r){return '<div class="rank"><img loading="lazy" src="img/ranks/'+r[0]+'.png" alt="">'+r[1]+'</div>'}).join('');
+  var fl=[["Turuncu","#E8501E","#FFA63D"],["Altın","#F0A020","#FFE15A"],["Kızıl","#B3123A","#FF5A6E"],["Mavi","#1E4FD8","#4FC3FF"],["Neon","#00E5D0","#B05CFF"]];
+  document.getElementById('flames').innerHTML=fl.map(function(f,i){
+    return '<div class="flame" style="--g:'+f[2]+'"><svg viewBox="0 0 50 62"><defs><linearGradient id="fg'+i+'" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="'+f[1]+'"/><stop offset="1" stop-color="'+f[2]+'"/></linearGradient></defs><path d="M25 2c3 12 18 18 18 36a18 18 0 0 1-36 0c0-8 4-12 7-16 1 5 3 7 6 8-2-9 1-20 5-28Z" fill="url(#fg'+i+')"/><path d="M25 30c2 6 8 9 8 17a8 8 0 0 1-16 0c0-4 2-6 4-8 1 2 2 3 3 3-1-4 0-8 1-12Z" fill="#fff" opacity=".8"/></svg>'+f[0]+'</div>'}).join('');
+  var w=document.getElementById('waves'),h='';for(var i=0;i<34;i++){h+='<b style="animation-delay:'+(i*0.07).toFixed(2)+'s"></b>'}w.innerHTML=h;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+  var root=document.documentElement;
+  try{var t=localStorage.getItem('sr-theme');if(t)root.setAttribute('data-theme',t)}catch(e){}
+  document.getElementById('theme').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');
+    var next=cur==='light'?'dark':'light';root.setAttribute('data-theme',next);
+    try{localStorage.setItem('sr-theme',next)}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
