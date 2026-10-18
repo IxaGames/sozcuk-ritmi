@@ -51,7 +51,7 @@ window.I18N_EN = {
   'İlerleme cihazında saklanır. Cihazında Google yedeklemesi açıksa yeniden kurulumda veya yeni telefonda geri gelir.': 'Progress is stored on your device. If Google backup is on, it comes back after a reinstall or on a new phone.',
   'Verilerim toplanıyor mu?': 'Is my data collected?',
   'Hesap sistemi yoktur; ad, e-posta, konum gibi bilgiler istenmez. Ayrıntılar için': 'There is no account system; no name, email or location is requested. For details, read the',
-  'gizlilik politikasını': 'privacy policy (Turkish)',
+  'gizlilik politikasını': 'privacy policy',
   'okuyabilirsin.': '.',
   'Ne zaman çıkıyor?': 'When is it released?',
   "Sözcük Ritmi yakında Google Play'de olacak. Duyuru için bu sayfayı takip edebilirsin.": 'Sözcük Ritmi is coming soon to Google Play. Follow this page for the announcement.',
@@ -59,6 +59,6 @@ window.I18N_EN = {
   "Sözcük Ritmi yakında Google Play'de. Sorun ve önerilerin için bize yazabilirsin.": 'Sözcük Ritmi is coming soon to Google Play. Write to us with any problems or suggestions.',
   'Bize yaz': 'Write to us',
   '© 2026 Tüm hakları saklıdır.': '© 2026 All rights reserved.',
-  'Gizlilik politikası': 'Privacy policy (Turkish)', 'İletişim': 'Contact'
+  'Gizlilik politikası': 'Privacy policy', 'İletişim': 'Contact'
 };
 window.I18N_EN_RE = [[/^(.+) manzarası$/, 'View of $1']];
