@@ -29,7 +29,7 @@ window.I18N_EN = {
   'Seri alevi': 'Streak flame',
   'Her gün girdikçe alevin büyür ve rengi değişir: turuncu, altın, kızıl, mavi ve neon.': 'The more days you play, the bigger your flame grows and the more its color changes: orange, gold, crimson, blue and neon.',
   'Dereceler ve başarımlar': 'Ranks and achievements',
-  "Tını'dan Söz Virtüözü'ne uzanan 8 derece, bronz, gümüş ve altın başarım madalyaları.": '8 ranks from Tını to Söz Virtüözü, plus bronze, silver and gold achievement medals.',
+  "Tını'dan Kelime Virtüözü'ne uzanan 8 derece, bronz, gümüş ve altın başarım madalyaları.": '8 ranks from Tını to Kelime Virtüözü, plus bronze, silver and gold achievement medals.',
   "Türkiye'yi bulmacayla gez": 'Tour Turkey through puzzles',
   'Her bölge yeni bir manzara ve yeni bir hikâye. Gün batımında, gece de farklı bir ışıkla karşılaşırsın.': 'Every region is a new view and a new story. At sunset and at night you meet a different light.',
   'Oyunun kendi müziği var': 'The game has its own music',
